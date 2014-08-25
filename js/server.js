@@ -3,7 +3,7 @@ var util = require('./util');
 var count = 0;
 
 http.createServer(function (req, res) {
-    count = count+1;
+    count = count + 1;
     console.log("User:"+count);
     var answer =  util.helloWorld();
     res.writeHead(200, {'Content-Type': 'text/plain'});
