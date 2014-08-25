@@ -1,7 +1,6 @@
 var http = require('http');
 //var util = require('./util');
 var userInfo = require('./userInfo');
-var counter= 0;
 
 http.createServer(function (req, res) {
     //var answer =  util.helloWorld();
