@@ -7,12 +7,10 @@ var username;
 
 function getURLfromBrowser(req) {
     var str = url.format(req.url);
-    getPathnamefromURL(str);
+    username = util.getPathnamefromURL(str);
 }
 
-function getPathnamefromURL(str) {
-    username = str.substr(1, str.length);
-}
+
 
 function printHelloUser() {
     if (username != 'favicon.ico') {
