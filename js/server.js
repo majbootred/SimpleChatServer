@@ -14,7 +14,7 @@ function getPathnamefromURL(str) {
     username = str.substr(1, str.length);
 }
 
-function printUsernameFromPathname() {
+function printHelloUser() {
     if (username != 'favicon.ico') {
         return "Hello " + username +"!";
     }
@@ -38,7 +38,7 @@ function checkForAdmin() {
     if (username == "admin") {
         return printUserCount();
     } else {
-        return printUsernameFromPathname();
+        return printHelloUser();
     }
 }
 
