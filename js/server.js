@@ -3,19 +3,29 @@ var http = require('http');
 var util = require('./util');
 var userCount = 0;
 var url = require('url');
-var urlo;
 
 function getURLfromBrowser(req){
-    urlo = url.parse(req.url);
-   console.log(urlo);
-    console.log('////////');
-   console.log(urlo['pathname'].split('/')[1]) ;
+    var str = url.format(req.url);
+    getPathnamefromURL(str);
+}
+
+function getPathnamefromURL(str) {
+    var username = str.substr(1, str.length);
+    printUsernameFromPathname(username);
+}
+
+function printUsernameFromPathname(username) {
+    if (username != 'favicon.ico') {
+        console.log("Hello, " + username);
+    }
 
 }
 
+
+
 function increaseUserCountByOne() {
     userCount++;
-    //console.log("User:" + userCount);
+    console.log("User:" + userCount);
 }
 
 function sendResponseWithHelloWorld(response) {
@@ -28,6 +38,7 @@ var handleDefaultRequest = function (req, res) {
     increaseUserCountByOne();
     sendResponseWithHelloWorld(res);
     getURLfromBrowser(req);
+
 };
 
 var server = http.createServer();
