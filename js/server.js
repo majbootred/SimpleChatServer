@@ -4,44 +4,47 @@ var util = require('./util');
 var requestCount = 0;
 var url = require('url');
 var username;
+var server_js = module.exports = {
 
-function getURLfromBrowser(req) {
-    var str = url.format(req.url);
-    username = util.deleteSlashFromPathName(str);
-}
+    getURLfromBrowser: function(req) {
+        var str = url.format(req.url);
+        username = util.deleteSlashFromPathName(str);
+    },
 
-function printHelloUser() {
-    if (username != 'favicon.ico') {
-        return "Hello " + username +"!";
+    printHelloUser: function() {
+        if (username != 'favicon.ico') {
+            return "Hello " + username + "!";
+        }
+    },
+
+    increaseRequestCountByOne: function() {
+        requestCount++;
+    },
+
+    sendResponse: function(response) {
+        var answer = this.checkForAdmin();
+        response.writeHead(200, {'Content-Type': 'text/plain'});
+        response.end(answer);
+    },
+
+    printUserCount: function() {
+        return "Number of users: " + requestCount;
+    },
+
+    checkForAdmin: function() {
+        if (username == "admin") {
+            return this.printUserCount();
+        } else {
+            return this.printHelloUser();
+        }
     }
-}
 
-function increaseRequestCountByOne() {
-    requestCount++;
-}
-
-function sendResponse(response) {
-    var answer = checkForAdmin();
-    response.writeHead(200, {'Content-Type': 'text/plain'});
-    response.end(answer);
-}
-
-function printUserCount() {
-    return "Number of users: " + requestCount;
-}
-
-function checkForAdmin() {
-    if (username == "admin") {
-        return printUserCount();
-    } else {
-        return printHelloUser();
-    }
 }
 
 var handleDefaultRequest = function (req, res) {
-    increaseRequestCountByOne();
-    getURLfromBrowser(req);
-    sendResponse(res);
+    server_js.increaseRequestCountByOne();
+    server_js.getURLfromBrowser(req);
+    server_js.sendResponse(res);
 };
 
 var server = http.createServer();
