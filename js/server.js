@@ -1,53 +1,20 @@
-const Port = 1337;
-var http = require('http');
-var util = require('./util');
-var requestCount = 0;
-var url = require('url');
-var username;
+const port=1337;
 
-function getURLfromBrowser(req) {
-    var str = url.format(req.url);
-    username = util.deleteSlashFromPathName(str);
-}
+var express = require('express');
+var app=express();
 
-function printHelloUser() {
-    if (username != 'favicon.ico') {
-        return "Hello " + username +"!";
-    }
-}
+app.get('/', function(req,res){
+    res.send('<a href ="http://localhost:1337/myname">http://localhost:1337/myname</a> ')
 
-function increaseRequestCountByOne() {
-    requestCount++;
-}
+});
+app.get('/statistics', function(req,res){
+    res.send("Here you can see our statistics");
+});
 
-function sendResponse(response) {
-    var answer = checkForAdmin();
-    response.writeHead(200, {'Content-Type': 'text/plain'});
-    response.end(answer);
-}
+app.get('/:user', function(req,res){
+    res.send("Hello " + req.param('user'));
+});
+var server = app.listen(port,function(){
+    console.log('Listening on port %d', server.address().port);
+});
 
-function printUserCount() {
-    return "Number of users: " + requestCount;
-}
-
-function checkForAdmin() {
-    if (username == "admin") {
-        return printUserCount();
-    } else {
-        return printHelloUser();
-    }
-}
-
-var handleDefaultRequest = function (req, res) {
-    increaseRequestCountByOne();
-    getURLfromBrowser(req);
-    sendResponse(res);
-};
-
-var server = http.createServer();
-
-server.on('request', handleDefaultRequest);
-
-server.listen(Port, '127.0.0.1');
-
-console.log('Server running at http://127.0.0.1:' + Port + '/');
