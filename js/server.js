@@ -11,6 +11,10 @@ app.get('/statistics', function(req,res){
     res.send("Here you can see our statistics");
 });
 
+app.get('/index.html',function(req,res) {
+    res.sendfile('./public/index.html');
+});
+
 app.get('/:user', function(req,res){
     res.send("Hello " + req.param('user'));
 });
