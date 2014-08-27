@@ -2,6 +2,6 @@ exports.helloWorld = function() {
     return 'Hello World\n';
 };
 
-exports.getPathnamefromURL = function(str) {
+exports.deleteSlashFromPathName = function(str) {
     return str.substr(1, str.length);
 }

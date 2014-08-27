@@ -7,10 +7,8 @@ var username;
 
 function getURLfromBrowser(req) {
     var str = url.format(req.url);
-    username = util.getPathnamefromURL(str);
+    username = util.deleteSlashFromPathName(str);
 }
-
-
 
 function printHelloUser() {
     if (username != 'favicon.ico') {
