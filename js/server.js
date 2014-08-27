@@ -18,7 +18,6 @@ function printUsernameFromPathname(username) {
     if (username != 'favicon.ico') {
         console.log("Hello, " + username);
     }
-
 }
 
 function increaseUserCountByOne() {
