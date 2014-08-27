@@ -18,17 +18,14 @@ function handler (req, res) {
         });
 }
 
-function deleteFromArray(chatClients,socket){
+function deleteFromArray(array,item){
     var newArray = [];
-    for (var i=0;i<chatClients.length;i++){
-        if (chatClients[i] === socket){
-
-        } else {
-            newArray.push(chatClients[i]);
+    for (var i=0;i<array.length;i++){
+        if (array[i] !== item){
+            newArray.push(array[i]);
         }
     }
-    chatClients = newArray;
-    return chatClients.length;
+    return newArray;
 }
 io.on('connection', function (socket) {
     var numberOfClients = chatClients.push(socket);
@@ -38,9 +35,9 @@ io.on('connection', function (socket) {
     socket.on('my other event', function (data) {
         console.log(data);
     socket.on('disconnect', function() {
-            var numberOfClients = deleteFromArray(chatClients,socket);
+            chatClients = deleteFromArray(chatClients,socket);
+            var numberOfClients = chatClients.length;
             console.log("client disconnected; remaining clients: "+numberOfClients);
-            console.log("Bye, bye");
         });
     });
 
