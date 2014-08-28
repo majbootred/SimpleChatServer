@@ -1,4 +1,3 @@
-
 const port=1337;
 
 var express = require('express');
@@ -10,6 +9,10 @@ app.get('/', function(req,res){
 });
 app.get('/statistics', function(req,res){
     res.send("Here you can see our statistics");
+});
+
+app.get('/index.html',function(req,res) {
+    res.sendfile('./public/index.html');
 });
 
 app.get('/:user', function(req,res){
