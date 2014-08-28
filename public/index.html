@@ -17,18 +17,27 @@
 </head>
 <body>
 <ul id="messages"></ul>
+
+
 <form action="">
+    <input style="background-color: lightpink" id="user_name" type="text" placeholder="Type in your name">
     <input id="input_message" autocomplete="off" /><button>Send</button>
 </form>
 <script>
     var socket = io();
+    var newUser;
     $('form').submit(function(){
+        socket.emit('user name', $('#user_name').val());
         socket.emit('chat message', $('#input_message').val());
         $('#input_message').val('');
         return false;
     });
+    socket.on('user name', function(msg){
+       // $('#messages').append($('<li>').text(msg));
+        newUser=msg;
+    });
     socket.on('chat message', function(msg){
-        $('#messages').append($('<li>').text(msg));
+        $('#messages').append($('<li>').text(newUser + ": " + msg));
     });
 </script>
 </body>
