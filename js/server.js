@@ -4,7 +4,7 @@ var express = require('express');
 var app=express();
 
 app.get('/', function(req,res){
-    res.send('<a href ="http://localhost:1337/myname">http://localhost:1337/myname</a> ')
+    res.send('<a href ="http://localhost:1337/myname">http://localhost:1337/myname</a> ');
 
 });
 app.get('/statistics', function(req,res){
