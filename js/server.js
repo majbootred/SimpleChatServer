@@ -1,5 +1,6 @@
 const port=1337;
 
+var chatUsersHandling = require('./chatUsersHandling');
 var express = require('express');
 var favicon = require('serve-favicon');
 var app=express();
@@ -20,20 +21,9 @@ app.get('/:user', function(req,res){
     res.send("Hello " + req.param('user'));
 });
 
-io.on('connection', function(socket){
-    io.emit('chat message', 'a user connected');
-    console.log('a user connected');
-    socket.on('disconnect', function(){
-        console.log('user disconnected');
-        io.emit('chat message', 'a user disconnected');
-    });
-});
+chatUsersHandling.emitChatMessage(io);
 
-io.on('connection', function(socket){
-    socket.on('chat message', function(msg){
-        io.emit('chat message', msg);
-    });
-});
+chatUsersHandling.emitConnectionMessages(io);
 
 var server = http.listen(port,function(){
     console.log('Listening on port %d', server.address().port);
