@@ -1,12 +1,15 @@
 const port=1337;
 
 var express = require('express');
+var favicon = require('serve-favicon');
 var app=express();
+
+app.use(favicon(__dirname + '/../public/favicon.ico'));
 
 app.get('/', function(req,res){
     res.send('<a href ="http://localhost:1337/myname">http://localhost:1337/myname</a> ')
-
 });
+
 app.get('/statistics', function(req,res){
     res.send("Here you can see our statistics");
 });
@@ -18,6 +21,7 @@ app.get('/index.html',function(req,res) {
 app.get('/:user', function(req,res){
     res.send("Hello " + req.param('user'));
 });
+
 var server = app.listen(port,function(){
     console.log('Listening on port %d', server.address().port);
 });
