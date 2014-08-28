@@ -1,23 +1,37 @@
 const port=1337;
 
+
 var express = require('express');
 var app=express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
-app.get('/', function(req,res){
-    res.send('<a href ="http://localhost:1337/myname">http://localhost:1337/myname</a> ');
 
+
+app.get('/',function(req,res) {
+    res.sendfile('./public/index.html');
 });
 app.get('/statistics', function(req,res){
     res.send("Here you can see our statistics");
 });
 
-app.get('/index.html',function(req,res) {
-    res.sendfile('./public/index.html');
-});
-
 app.get('/:user', function(req,res){
     res.send("Hello " + req.param('user'));
 });
-var server = app.listen(port,function(){
+
+io.on('connection', function(socket){
+    console.log('a user connected');
+    socket.on('disconnect', function(){
+        console.log('user disconnected');
+    });
+});
+
+io.on('connection', function(socket){
+    socket.on('chat message', function(msg){
+        console.log('message: ' + msg);
+    });
+});
+
+var server = http.listen(port,function(){
     console.log('Listening on port %d', server.address().port);
 });
