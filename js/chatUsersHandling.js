@@ -1,19 +1,25 @@
+
+
 exports.emitConnectionMessages = function(io){
     io.on('connection', function(socket){
-        io.emit('chat message', 'a user connected');
+        var userName;
+
+        io.emit('broadcast', 'a user connected');
         console.log('a user connected');
+
         socket.on('disconnect', function(){
             console.log('user disconnected');
-            io.emit('chat message', 'a user disconnected');
+            io.emit('broadcast', 'user ' + userName+ ' disconnected');
         });
-    });
-};
 
-exports.emitChatMessage =  function(io)
-{
-    io.on('connection', function (socket) {
-        socket.on('chat message', function (msg) {
-            io.emit('chat message', msg);
+
+        socket.on('user name', function (msg) {
+            userName=msg;
         });
+
+        socket.on('chat message', function (msg) {
+            io.emit('broadcast', userName + ": " + msg);
+        });
+
     });
 };

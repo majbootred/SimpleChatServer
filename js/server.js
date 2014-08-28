@@ -21,9 +21,10 @@ app.get('/:user', function(req,res){
     res.send("Hello " + req.param('user'));
 });
 
-chatUsersHandling.emitChatMessage(io);
 
 chatUsersHandling.emitConnectionMessages(io);
+
+
 
 var server = http.listen(port,function(){
     console.log('Listening on port %d', server.address().port);
