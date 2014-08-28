@@ -3,10 +3,16 @@
     "version": "0.0.0",
     "main": "server.js",
     "scripts": {
-        "test": "./node_modules/.bin/mocha tests"
+        "test": "./node_modules/.bin/mocha tests",
+        "start": "node js/server.js",
+        "forever": "killall node; npm install; forever start -l forever.log -o out.log -e err.log --append js/server.js"
     },
     "author": "",
-    "license": "BSD-2-Clause",
+    "repository" : {
+        "type" : "git",
+        "url" : "https//github.com/fhinkel/SimpleChatServer"
+    },
+    "license": "The MIT License (MIT)",
     "dependencies": {
         "express": "~4.0",
         "serve-favicon": "~2.1.1",
