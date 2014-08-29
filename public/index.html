@@ -1,21 +1,38 @@
 <!doctype html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="chatStyle.css" />
+    <link rel="stylesheet" type="text/css" href="chatStyle.css"/>
     <title>informatica feminale chat</title>
     <script src="/socket.io/socket.io.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 
+
 </head>
 
-<body style="height:100%;">
-<textarea id="messages" style="width:90%;height:75vh;">
-    Hello
-</textarea>
+<body>
+
+<div id="chatWrapper">
+    <div id="userListWrapper">
+        <h3>Userlist</h3>
+        <ul id="userList">
+            <li> user 1</li>
+            <li> user 2</li>
+        </ul>
+    </div>
+
+    <textarea id="messages">
+        Hello
+    </textarea>
+
+</div>
+
+
 <form action="">
     <input id="user_name" type="text" placeholder="Type in your name">
-    <input id="input_message" autocomplete="off" /><button>Send</button>
+    <input id="input_message" autocomplete="off"/>
+    <button>Send</button>
 </form>
+
 <script src="frontend.js"></script>
 
 

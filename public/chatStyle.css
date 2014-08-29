@@ -31,6 +31,25 @@ form button {
 }
 
 
+#chatWrapper{
+    width: 100%;
+}
+
+#userListWrapper {
+    float: right;
+    width: 8%;
+}
+
+#userList{
+    list-style-type: none;
+}
+
+
 #user_name {
     background-color: lightpink;
+}
+
+#messages {
+    width: 90%;
+    height: 75vh;
 }
