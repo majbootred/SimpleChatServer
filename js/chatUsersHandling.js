@@ -17,14 +17,7 @@ exports.emitConnectionMessages = function (io, userlist) {
 
         socket.on('user name', function (msg) {
             if (!socket.username) {
-                name = msg;
-                var index = userlist.indexOf(msg);
-                var number = 0;
-                while (index != -1) {
-                    number++;
-                    msg = name + number.toString();
-                    index = userlist.indexOf(msg);
-                }
+                msg = getUniqueUsername(userlist, msg);
                 userlist.push(msg);
                 io.emit('sendUser', userlist);
                 socket.username = msg;
@@ -44,4 +37,26 @@ var deleteUsername = function (userlist, username) {
         userlist.splice(index, 1);
     }
     return userlist;
+};
+
+//should refactor this. but does this work? would we also have to input io and socket?
+var setUsername = function(userlist, msg, socket){
+    msg = getUniqueUsername(userlist, msg);
+    userlist.push(msg);
+    io.emit('sendUser', userlist);
+    socket.username = msg;
+    console.log("userlist nach befuellen " + userlist.toString());
+};
+
+
+var getUniqueUsername = function(userlist, msg){
+    var name = msg;
+    var index = userlist.indexOf(msg);
+    var number = 0;
+    while (index != -1) {
+        number++;
+        msg = name + number.toString();
+        index = userlist.indexOf(msg);
+    }
+    return msg;
 };
