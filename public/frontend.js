@@ -19,13 +19,13 @@ $(document).ready(function() {
 
 
     });
-});
 
-socket.on('sendUser', function (userlist) {
-    for (var i = 0; i < userlist.length; i++) {
-        console.log(userlist[i]);
-        $('#userList').append('<li>').text(userlist[i]);
-    }
-
+    socket.on('sendUser', function (userlist) {
+        $('#userList').html('');
+        for (var i = 0; i < userlist.length; i++) {
+            console.log(userlist[i]);
+            $('#userList').append($('<li>').text(userlist[i]));
+        }
+    });
 
 });
