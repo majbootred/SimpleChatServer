@@ -6,6 +6,7 @@
 }
 body {
     font: 13px Helvetica, Arial;
+    color: #424242;
 }
 
 form {
@@ -58,6 +59,6 @@ form button {
     padding: 5px 10px;
     resize: none;
     border: none;
-    border-right: black 1px solid;
-
+    border-right: #424242 1px solid;
+    color: #424242;
 }
