@@ -22,7 +22,7 @@ var disconnectUser = function (listOfUsers, io, userName) {
 var handleUserName = function (user, socket, io, listOfUsers) {
     if (!socket.username) {
 
-        user = listOfUsers.addNewUserName(user);
+        user = listOfUsers.addUniqueUserName(user);
 
         io.emit('sendUser', listOfUsers);
         socket.username = user;
@@ -57,5 +57,4 @@ module.exports = function (io, listOfUsers) {
 
     });
 };
-
 

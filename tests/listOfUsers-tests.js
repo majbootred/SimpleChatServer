@@ -53,27 +53,27 @@ describe('The list', function () {
     });
 
     it('should add new user name to empty list', function () {
-        list.addNewUserName(element);
+        list.addUniqueUserName(element);
         assert.equal(list.toString(), [element].toString());
     });
 
     it('should modify double user names', function () {
-        list.addNewUserName(element);
-        list.addNewUserName(element);
+        list.addUniqueUserName(element);
+        list.addUniqueUserName(element);
         assert.equal(list.toString(), [element, 'element1' ].toString());
     });
 
     it('should modify triple user names', function () {
-        list.addNewUserName(element);
-        list.addNewUserName(element);
-        list.addNewUserName(element);
+        list.addUniqueUserName(element);
+        list.addUniqueUserName(element);
+        list.addUniqueUserName(element);
         assert.equal(list.toString(), [element, 'element1', 'element2' ].toString());
     });
 
     it('should not modify different user names', function () {
-        list.addNewUserName(element);
+        list.addUniqueUserName(element);
         var anotherElement = 'somethingElse';
-        list.addNewUserName(anotherElement);
+        list.addUniqueUserName(anotherElement);
         assert.equal(list.toString(), [element, anotherElement].toString());
     });
 

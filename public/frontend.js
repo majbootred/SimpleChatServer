@@ -3,6 +3,7 @@ $(document).ready(function () {
 
     $('form').submit(function () {
         socket.emit('user name', $('#user_name').val());
+        $('#user_name').val();
         socket.emit('chat message', $('#input_message').val());
         $('#input_message').val('');
         console.log('user name: ' + $('#user_name').val());
@@ -23,5 +24,9 @@ $(document).ready(function () {
             console.log(userlist[i]);
             $('#userList').append($('<li>').text(userlist[i]));
         }
+    });
+
+    socket.on('username', function(username){
+       $('#user_name').val(username);
     });
 });

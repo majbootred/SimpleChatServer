@@ -19,7 +19,7 @@ var list = (function () {
         return this.indexOf(needle) !== -1;
     };
 
-    listOfUsers.addNewUserName = function (user) {
+    listOfUsers.addUniqueUserName = function (user) {
         var postfix = 0,
             potentialUserName = user;
 
