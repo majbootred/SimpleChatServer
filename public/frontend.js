@@ -3,6 +3,7 @@ $(document).ready(function () {
 
     $('form').submit(function () {
         socket.emit('user name', $('#user_name').val());
+        $('#user_name').val(socket.username);
         socket.emit('chat message', $('#input_message').val());
         $('#input_message').val('');
         console.log('user name: ' + $('#user_name').val());
