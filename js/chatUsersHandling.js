@@ -17,19 +17,13 @@ exports.emitConnectionMessages = function (io, userlist) {
 
         socket.on('user name', function (msg) {
             if (!socket.username) {
-                name = msg;
-                var index = userlist.indexOf(msg);
-                var number = 0;
-                while (index != -1) {
-                    number++;
-                    msg = name + number.toString();
-                    index = userlist.indexOf(msg);
-                }
+                msg = getUniqueUsername(userlist, msg);
                 userlist.push(msg);
                 io.emit('sendUser', userlist);
                 socket.username = msg;
                 console.log("userlist nach befuellen " + userlist.toString());
             }
+            io.emit('username', socket.username);
         });
 
         socket.on('chat message', function (msg) {
@@ -44,4 +38,16 @@ var deleteUsername = function (userlist, username) {
         userlist.splice(index, 1);
     }
     return userlist;
+};
+
+var getUniqueUsername = function(userlist, msg){
+    var name = msg;
+    var index = userlist.indexOf(msg);
+    var number = 0;
+    while (index != -1) {
+        number++;
+        msg = name + number.toString();
+        index = userlist.indexOf(msg);
+    }
+    return msg;
 };
