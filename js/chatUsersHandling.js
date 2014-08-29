@@ -1,10 +1,11 @@
-exports.emitConnectionMessages = function(io, userlist){
-    io.on('connection', function(socket){
+exports.emitConnectionMessages = function (io, userlist) {
+    io.on('connection', function (socket) {
         io.emit('broadcast', 'a user connected');
         console.log('a user connected');
-        socket.on('disconnect', function(){
+
+        socket.on('disconnect', function () {
             console.log('user disconnected');
-            if(socket.username) {
+            if (socket.username) {
                 io.emit('broadcast', 'user ' + socket.username + ' disconnected');
             } else {
                 io.emit('broadcast', 'a user disconnected');
@@ -13,6 +14,7 @@ exports.emitConnectionMessages = function(io, userlist){
             io.emit('sendUser', userlist);
             console.log("userlist nach loeschen " + userlist.toString());
         });
+
         socket.on('user name', function (msg) {
             if (!socket.username) {
                 name = msg;
@@ -29,12 +31,14 @@ exports.emitConnectionMessages = function(io, userlist){
                 console.log("userlist nach befuellen " + userlist.toString());
             }
         });
+
         socket.on('chat message', function (msg) {
             io.emit('broadcast', socket.username + ": " + msg);
         });
     });
 };
-var deleteUsername = function(userlist, username){
+
+var deleteUsername = function (userlist, username) {
     var index = userlist.indexOf(username);
     if (index > -1) {
         userlist.splice(index, 1);

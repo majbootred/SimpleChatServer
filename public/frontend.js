@@ -1,8 +1,7 @@
-$(document).ready(function() {
+$(document).ready(function () {
     var socket = io();
-    var newUser;
 
-    $('form').submit(function(){
+    $('form').submit(function () {
         socket.emit('user name', $('#user_name').val());
         socket.emit('chat message', $('#input_message').val());
         $('#input_message').val('');
@@ -16,8 +15,6 @@ $(document).ready(function() {
         $('#messages').val(newContent);
         var textArea = $('#messages');
         textArea.scrollTop(textArea[0].scrollHeight - textArea.height());
-
-
     });
 
     socket.on('sendUser', function (userlist) {
@@ -27,5 +24,4 @@ $(document).ready(function() {
             $('#userList').append($('<li>').text(userlist[i]));
         }
     });
-
 });
