@@ -9,7 +9,6 @@ body {
 }
 
 form {
-    background: #000;
     padding: 3px;
     position: fixed;
     bottom: 0;
@@ -21,13 +20,16 @@ form input {
     padding: 10px;
     width: 90%;
     margin-right: .5%;
+    background-color: #FF9900;
+    border-radius: 6px;
 }
 
 form button {
     width: 7%;
-    background: rgb(130, 224, 255);
+    background: #3299BB;
     border: none;
     padding: 10px;
+    border-radius: 6px;
 }
 
 
@@ -37,7 +39,8 @@ form button {
 
 #userListWrapper {
     float: right;
-    width: 8%;
+    width: 15%;
+    padding: 5px 10px;
 }
 
 #userList{
@@ -46,10 +49,15 @@ form button {
 
 
 #user_name {
-    background-color: lightpink;
+    background-color: #E9E9E9;
 }
 
 #messages {
-    width: 90%;
-    height: 75vh;
+    width: 85%;
+    height: 81vh;
+    padding: 5px 10px;
+    resize: none;
+    border: none;
+    border-right: black 1px solid;
+
 }

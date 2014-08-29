@@ -4,12 +4,12 @@ exports.emitConnectionMessages = function(io){
     io.on('connection', function(socket){
         var userName;
 
-        io.emit('broadcast', 'a user connected');
+        io.emit('broadcast', '*** a user connected ***');
         console.log('a user connected');
 
         socket.on('disconnect', function(){
             console.log('user disconnected');
-            io.emit('broadcast', 'user ' + userName+ ' disconnected');
+            io.emit('broadcast', '/// user ' + userName+ ' disconnected ///');
         });
 
 
