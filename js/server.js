@@ -1,4 +1,4 @@
-const port = 1337;
+const port = 80;
 
 var chatUsersHandling = require('./chatUsersHandling');
 var express = require('express');
