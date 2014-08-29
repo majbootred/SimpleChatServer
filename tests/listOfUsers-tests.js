@@ -31,11 +31,24 @@ describe('The list', function () {
         assert.equal([].toString(), list.toString());
     });
 
-    it('should return the same list if needle is not in the list', function() {
+    it('should return the same list if needle is not in the list', function () {
         list.push(element);
         var anotherElement = 'somethingElse';
         list.deleteUsername(anotherElement);
         assert.equal([element].toString(), list.toString());
+    });
 
-    })
+    it('should delete all occurrences of the name', function () {
+        var anotherElement = 'somethingElse';
+        list.push(element);
+        list.push(anotherElement);
+        list.push(element);
+
+        assert.equal(
+            [element, anotherElement, element].toString(),
+            list.toString()
+        );
+        list.deleteUsername(element);
+        assert.equal([anotherElement].toString(), list.toString());
+    });
 });
