@@ -20,21 +20,10 @@ var disconnectUser = function (listOfUsers, io, userName) {
 };
 
 var handleUserName = function (user, socket, io, listOfUsers) {
-    function modifyUsernameToMakeItUnique(number) {
-        return user + number.toString();
-    }
-
     if (!socket.username) {
-        var index,
-            number;
-        index = listOfUsers.indexOf(user);
-        number = 0;
-        while (index !== -1) {
-            number = number + 1;
-            user = modifyUsernameToMakeItUnique(number);
-            index = listOfUsers.indexOf(user);
-        }
-        listOfUsers.push(user);
+
+        user = listOfUsers.addNewUserName(user);
+
         io.emit('sendUser', listOfUsers);
         socket.username = user;
         console.log("List of users after new connect " + listOfUsers.toString());
