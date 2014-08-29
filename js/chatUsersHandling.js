@@ -23,6 +23,7 @@ exports.emitConnectionMessages = function (io, userlist) {
                 socket.username = msg;
                 console.log("userlist nach befuellen " + userlist.toString());
             }
+            io.emit('username', socket.username);
         });
 
         socket.on('chat message', function (msg) {
@@ -38,16 +39,6 @@ var deleteUsername = function (userlist, username) {
     }
     return userlist;
 };
-
-//should refactor this. but does this work? would we also have to input io and socket?
-var setUsername = function(userlist, msg, socket){
-    msg = getUniqueUsername(userlist, msg);
-    userlist.push(msg);
-    io.emit('sendUser', userlist);
-    socket.username = msg;
-    console.log("userlist nach befuellen " + userlist.toString());
-};
-
 
 var getUniqueUsername = function(userlist, msg){
     var name = msg;
