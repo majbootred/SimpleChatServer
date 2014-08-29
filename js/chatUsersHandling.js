@@ -14,11 +14,13 @@ exports.emitConnectionMessages = function(io){
 
 
         socket.on('user name', function (msg) {
+            console.log(msg);
             userName=msg;
         });
 
         socket.on('chat message', function (msg) {
             io.emit('broadcast', userName + ": " + msg);
+            console.log(msg);
         });
 
     });
