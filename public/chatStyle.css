@@ -30,10 +30,24 @@ form button {
     padding: 10px;
 }
 
+#chatWrapper{
+    width: 100%;
+}
+
+#userListWrapper {
+    float: right;
+    width: 8%;
+}
+
+#userList{
+    list-style-type: none;
+}
+
 #messages {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    width: 90%;
 }
 
 #messages li {
