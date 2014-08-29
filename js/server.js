@@ -6,6 +6,7 @@ var favicon = require('serve-favicon');
 var app=express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var userlist = new Array();
 
 app.use(express.static(__dirname + '/../public'));
 
@@ -18,7 +19,7 @@ app.get('/:user', function(req,res){
 });
 
 
-chatUsersHandling.emitConnectionMessages(io);
+chatUsersHandling.emitConnectionMessages(io, userlist);
 
 
 
