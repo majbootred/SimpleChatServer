@@ -8,7 +8,6 @@ exports.emitConnectionMessages = function(io, userlist){
                 io.emit('broadcast', 'user ' + socket.username + ' disconnected');
             } else {
                 io.emit('broadcast', 'a user disconnected');
-
             }
             userlist = deleteUsername(userlist, socket.username);
             io.emit('sendUser', userlist);
