@@ -11,8 +11,21 @@ var userlist = new Array();
 app.use(express.static(__dirname + '/../public'));
 
 app.get('/statistics', function(req,res){
-    res.send("Here you can see our statistics");
+   // res.send("Here you can see our statistics");
+    res.send(printStatistics()    );
 });
+
+function printStatistics()
+{
+    var statistics = "Here you can see our statistics"
+    + "<br />" +
+    "Number of active users: "+ userlist.length;
+    for (i=0; i < userlist.length; i++)
+    {
+        statistics+="<br />" + userlist[i];
+    }
+    return statistics;
+}
 
 app.get('/:user', function(req,res){
     res.send("Hello " + req.param('user'));
