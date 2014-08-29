@@ -7,7 +7,7 @@ var app=express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-app.use(express.static(process.cwd() + '/public'));
+app.use(express.static(__dirname + '/../public'));
 
 app.get('/statistics', function(req,res){
     res.send("Here you can see our statistics");
