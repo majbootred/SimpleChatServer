@@ -1,4 +1,4 @@
-const port = 1337;
+const port = 80;
 
 "use strict";
 var statistics = require('./statistics.js');
