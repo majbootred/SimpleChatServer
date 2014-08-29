@@ -61,6 +61,7 @@ module.exports = function (io, listOfUsers) {
 
         socket.on('user name', function (user) {
             handleUserName(user, socket, io, listOfUsers);
+            console.log('** ' + listOfUsers.length);
         });
 
         function broadcastNewMessage(msg) {
