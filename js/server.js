@@ -7,21 +7,7 @@ var app=express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-
-app.use(favicon(__dirname + '/../public/favicon.ico'));
-
-
-app.get('/chatStyle.css',function(req,res) {
-    res.sendfile('./public/chatStyle.css');
-});
-
-app.get('/frontend.js',function(req,res) {
-    res.sendfile('./public/frontend.js');
-});
-
-app.get('/',function(req,res) {
-    res.sendfile('./public/index.html');
-});
+app.use(express.static(process.cwd() + '/public'));
 
 app.get('/statistics', function(req,res){
     res.send("Here you can see our statistics");
