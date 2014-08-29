@@ -1,26 +1,18 @@
 "use strict";
 
-var disconnectUser = function (listOfUsers, io, socket) {
+var disconnectUser = function (listOfUsers, io, userName) {
     console.log('User disconnected');
 
-    function deleteUsername(list, needle) {
-        var index = list.indexOf(needle);
-        if (index > -1) {
-            list.splice(index, 1);
-        }
-        return list;
-    }
-
     function broadcastUserDisconnected() {
-        if (socket.username) {
-            io.emit('broadcast', 'User ' + socket.username + ' disconnected');
+        if (userName) {
+            io.emit('broadcast', 'User ' + userName + ' disconnected');
         } else {
             io.emit('broadcast', 'A user disconnected');
         }
     }
 
     broadcastUserDisconnected();
-    listOfUsers = deleteUsername(listOfUsers, socket.username);
+    listOfUsers.deleteUsername(userName);
     io.emit('sendUser', listOfUsers);
     console.log("List of users after disconnect "
         + listOfUsers.toString());
@@ -56,7 +48,7 @@ module.exports = function (io, listOfUsers) {
         console.log('User connected');
 
         socket.on('disconnect', function () {
-            disconnectUser(listOfUsers, io, socket);
+            disconnectUser(listOfUsers, io, socket.username);
         });
 
         socket.on('user name', function (user) {

@@ -9,6 +9,13 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
 var listOfUsers = [];
+listOfUsers.deleteUsername = function(needle) {
+    var index = this.indexOf(needle);
+    if (index > -1) {
+        console.log('Removing ' + this[index] + ' from user list of users.');
+        this.splice(index, 1);
+    }
+};
 
 app.use(express.static(__dirname + '/../public'));
 
