@@ -15,20 +15,8 @@
 <form action="">
     <input id="user_name" type="text" placeholder="Type in your name">
     <input id="input_message" autocomplete="off" /><button>Send</button>
-</form>
-<script>
-    var socket = io();
-    var newUser;
-    $('form').submit(function(){
-        socket.emit('user name', $('#user_name').val());
-        socket.emit('chat message', $('#input_message').val());
-        $('#input_message').val('');
-        return false;
-    });
+    </form>
 
-    socket.on('broadcast', function(msg){
-        $('#messages').append($('<li>').text(msg));
-    });
-</script>
+<script src="frontend.js"></script>
 </body>
 </html>
