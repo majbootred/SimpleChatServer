@@ -10,7 +10,7 @@
     "author": "",
     "repository" : {
         "type" : "git",
-        "url" : "https//github.com/fhinkel/SimpleChatServer"
+        "url" : "https://github.com/majbootred/SimpleChatServer"
     },
     "license": "The MIT License (MIT)",
     "dependencies": {
