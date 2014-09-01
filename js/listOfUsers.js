@@ -31,12 +31,22 @@ var list = (function () {
             listOfUsers.push(user);
         }
 
-        while (this.isInList(potentialUserName)) {
-            increasePostfix();
-            potentialUserName = this.concatenateUsernameWithPostfix(user, postfix);
+        if (this.isInList(potentialUserName)) {
+
+            while (this.isInList(potentialUserName)) {
+                increasePostfix();
+                potentialUserName = this.concatenateUsernameWithPostfix(user, postfix);
+            }
+
+            console.log("Username " + user + " was taken and therefor altered to " + potentialUserName)
+        }
+
+        else {
+            console.log(" Username " + potentialUserName + " is unique")
         }
 
         addToList(potentialUserName);
+
         return potentialUserName;
     };
 
