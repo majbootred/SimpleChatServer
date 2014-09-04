@@ -19,14 +19,22 @@ var disconnectUser = function (listOfUsers, io, userName) {
 
 };
 
+
 var handleUserName = function (user, socket, io, listOfUsers) {
     if (!socket.username) {
 
         user = listOfUsers.addUniqueUserName(user);
 
+        var usernameAltered = listOfUsers.isUsernameAltered();
+
         io.emit('sendUser', listOfUsers);
+
+        io.emit('userNameModified',usernameAltered,user);
+
         socket.username = user;
+
         console.log("List of users after new connect " + listOfUsers.toString());
+
     }
 
 };

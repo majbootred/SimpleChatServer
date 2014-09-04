@@ -23,8 +23,15 @@ $(document).ready(function () {
         for (var i = 0; i < userlist.length; i++) {
             console.log(userlist[i]);
             $('#userList').append($('<li>').text(userlist[i]));
-        }
+        };
+
     });
+
+    socket.on('userNameModified', function(usernameAltered,user){
+        if (usernameAltered) {
+            alert("The name of the new user was already taken and therefor altered to " + user);
+        }
+    })
 
     socket.on('username', function(username){
        $('#user_name').val(username);

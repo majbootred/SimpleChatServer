@@ -1,7 +1,9 @@
-"use strict";
+'use strict';
 
 var list = (function () {
-    var listOfUsers = [];
+    var listOfUsers = [],
+        alteredUserName = false;
+
     listOfUsers.deleteUsername = function (needle) {
         var index = this.indexOf(needle);
         while (index > -1) {
@@ -15,6 +17,10 @@ var list = (function () {
         return user + number.toString();
     };
 
+    listOfUsers.isUsernameAltered = function() {
+        return alteredUserName;
+    }
+
     listOfUsers.isInList = function (needle) {
         return this.indexOf(needle) !== -1;
     };
@@ -27,6 +33,8 @@ var list = (function () {
             postfix = postfix + 1;
         }
 
+
+
         function addToList(user) {
             listOfUsers.push(user);
         }
@@ -38,18 +46,19 @@ var list = (function () {
                 potentialUserName = this.concatenateUsernameWithPostfix(user, postfix);
             }
 
-            console.log("Username " + user + " was taken and therefor altered to " + potentialUserName)
+            alteredUserName = true;
+            console.log("Username " + user + " was taken and therefor altered to " + potentialUserName);
+
         }
 
         else {
-            console.log(" Username " + potentialUserName + " is unique")
+            console.log(" Username " + potentialUserName + " is unique");
         }
 
         addToList(potentialUserName);
 
         return potentialUserName;
     };
-
 
     return listOfUsers;
 
